@@ -1,0 +1,2 @@
+config_eth0=dhcp
+udhcpc_eth0="-T 60"

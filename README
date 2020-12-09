@@ -1,0 +1,31 @@
+WARNING
+this is a very rough script.
+I have't tested complete building process.
+it has no error checking, I'll fix it at some point.
+currently it's just checklist/guide for how to create these images.
+
+
+FOR OrangePi zero (LTS 512MB)
+(sun8i-h2-plus-orangepi-zero)
+
+
+By default script builds 1gb sd card images with small u-boot partition and
+one big btrfs partition with compressed files. 
+After image it built, you can dd image to your sd card, resize dos parition 
+and run `btrfs filesytem reize max /` after orangepi booted.
+
+===KERNEL CONFIG===
+Script builds linux kernel out of mainline kernel.
+it supports ext4, btrfs and f2fs. 
+Config itself is quite minimal, you may need to tweak it to fit your requirements.
+IT DOES NOT SUPPORT WIFI. afaik It's supported only by legacy sunxi-linux-3.4
+
+I've had success creating image out of:
+	stage3-armv7a_hardfp-20200509T210605Z.tar.xz
+	linux-5.4.77.tar.xz
+	u-boot revision 832bfad7451e2e7bd23c96edff2be050905ac3f6
+
+you should use up to date verisons, these are just in case something breakes in the future.
+
+script also tweaks some settings, you can edit them in syssetup()
+script also requires portage-latest.tar.xz to be placed in `pwd`
